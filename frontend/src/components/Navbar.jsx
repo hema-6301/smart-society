@@ -17,7 +17,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
       
       {/* Logo */}
       <h1 className="text-2xl font-bold tracking-wide text-black drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">
-        🏣Smart Society
+        🏘️Smart Society
       </h1>
 
         {/* Navigation Links */}
