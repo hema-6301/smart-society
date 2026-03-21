@@ -23,10 +23,10 @@ export default function Dashboard() {
     const fetchData = async () => {
       try {
         const [flatsRes, paymentsRes, ticketsRes, visitorsRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/flats", config),
-          axios.get("http://localhost:5000/api/payments", config),
-          axios.get("http://localhost:5000/api/complaints", config),
-          axios.get("http://localhost:5000/api/visitors", config)
+          axios.get("http://smart-society-agm0.onrender.com/api/flats", config),
+          axios.get("http://smart-society-agm0.onrender.com/api/payments", config),
+          axios.get("http://smart-society-agm0.onrender.com/api/complaints", config),
+          axios.get("http://smart-society-agm0.onrender.com/api/visitors", config)
         ]);
 
         setFlats(flatsRes.data || []);
