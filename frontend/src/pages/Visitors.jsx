@@ -18,7 +18,7 @@ export default function Visitors() {
   // Fetch visitors
   const fetchVisitors = async () => {
     try {
-      const res = await axios.get("http://smart-society-agm0.onrender.com/api/visitors", config);
+      const res = await axios.get("https://smart-society-agm0.onrender.com/api/visitors", config);
 
       let data = res.data;
 
@@ -41,7 +41,7 @@ export default function Visitors() {
   // Fetch flats for dropdown (only for security)
   const fetchFlats = async () => {
     try {
-      const res = await axios.get("http://smart-society-agm0.onrender.com/api/flats", config);
+      const res = await axios.get("https://smart-society-agm0.onrender.com/api/flats", config);
       setFlats(res.data);
     } catch (err) {
       console.error("Fetch flats error:", err.response?.data || err);
@@ -61,7 +61,7 @@ export default function Visitors() {
     }
 
     try {
-      await axios.post("http://smart-society-agm0.onrender.com/api/visitors", form, config);
+      await axios.post("https://smart-society-agm0.onrender.com/api/visitors", form, config);
       setForm({ name: "", flatNumber: "", purpose: "guest" });
       setShowForm(false);
       fetchVisitors();
@@ -73,7 +73,7 @@ export default function Visitors() {
 
   const checkout = async (id) => {
     try {
-      await axios.put(`http://smart-society-agm0.onrender.com/api/visitors/${id}/exit`, {}, config);
+      await axios.put(`https://smart-society-agm0.onrender.com/api/visitors/${id}/exit`, {}, config);
       fetchVisitors();
     } catch (err) {
       console.error("Checkout error:", err.response?.data || err);
