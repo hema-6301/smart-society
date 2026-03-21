@@ -22,7 +22,7 @@ export default function Complaints() {
   const fetchComplaints = async () => {
     try {
 
-      const res = await fetch("http://localhost:5000/api/complaints", {
+      const res = await fetch("http://smart-society-agm0.onrender.com/api/complaints", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -49,7 +49,7 @@ export default function Complaints() {
 
     try {
 
-      await fetch("http://localhost:5000/api/complaints", {
+      await fetch("http://smart-society-agm0.onrender.com/api/complaints", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -75,7 +75,7 @@ export default function Complaints() {
 
     try {
 
-      await fetch(`http://localhost:5000/api/complaints/${id}`, {
+      await fetch(`http://smart-society-agm0.onrender.com/api/complaints/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
