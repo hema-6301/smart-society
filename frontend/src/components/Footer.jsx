@@ -61,7 +61,7 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="mt-14 border-t border-black/20 pt-6 text-center text-black/70 text-xs z-10 relative">
-        Designed with ❤️ using React & Tailwind CSS | Developed by YourName
+        Designed with ❤️ using React & Tailwind CSS
       </div>
     </footer>
   );
