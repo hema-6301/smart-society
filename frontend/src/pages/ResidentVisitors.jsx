@@ -13,7 +13,7 @@ export default function ResidentVisitors() {
   useEffect(() => {
     const fetchVisitors = async () => {
       try {
-        const res = await axios.get("http://smart-society-agm0.onrender.com/api/visitors", config);
+        const res = await axios.get("https://smart-society-agm0.onrender.com/api/visitors", config);
         if (!Array.isArray(res.data)) {
           setVisitors([]);
           return;
