@@ -16,7 +16,7 @@ export default function Flats() {
   // Fetch flats from backend
   const fetchFlats = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/flats", config);
+      const res = await axios.get("http://smart-society-agm0.onrender.com/api/flats", config);
       setFlats(res.data);
     } catch (err) {
       console.error("Fetch flats error:", err.response?.data || err);
@@ -46,9 +46,9 @@ export default function Flats() {
       }
 
       if (editingId) {
-        await axios.put(`http://localhost:5000/api/flats/${editingId}`, form, config);
+        await axios.put(`http://smart-society-agm0.onrender.com/api/flats/${editingId}`, form, config);
       } else {
-        await axios.post("http://localhost:5000/api/flats", form, config);
+        await axios.post("http://smart-society-agm0.onrender.com/api/flats", form, config);
       }
 
       setForm(empty);
@@ -64,7 +64,7 @@ export default function Flats() {
   const deleteFlat = async (id) => {
     if (!window.confirm("Are you sure you want to delete this flat?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/flats/${id}`, config);
+      await axios.delete(`http://smart-society-agm0.onrender.com/api/flats/${id}`, config);
       fetchFlats();
     } catch (err) {
       console.error("Delete flat error:", err.response?.data || err);
