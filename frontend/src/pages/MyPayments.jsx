@@ -13,7 +13,7 @@ function MyPayments() {
 
   const fetchPayments = async () => {
     try {
-      const res = await axios.get("http://smart-society-agm0.onrender.com/api/payments", {
+      const res = await axios.get("https://smart-society-agm0.onrender.com/api/payments", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPayments(res.data || []);
