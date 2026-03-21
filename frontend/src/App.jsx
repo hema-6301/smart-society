@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { useState, useEffect } from "react";
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -13,8 +15,8 @@ import Flats from "./pages/Flats";
 import MyPayments from "./pages/MyPayments";
 import MyComplaints from "./pages/MyComplaints";
 import ResidentVisitors  from "./pages/ResidentVisitors";
-function App() {
 
+function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [role, setRole] = useState("");
 
@@ -30,100 +32,119 @@ function App() {
 
   return (
     <Router>
+      <div className="flex flex-col min-h-screen">
+        {/* Navbar */}
+        <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+        {/* Main content */}
+        <main className="flex-grow">
+          <Routes>
 
-      <Routes>
+            {/* HOME */}
+            <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
 
-        {/* HOME */}
-        <Route path="/" element={<Home />} />
+            {/* LOGIN */}
+            <Route
+              path="/login"
+              element={
+                isLoggedIn
+                  ? <Navigate to="/" />
+                  : <Login setIsLoggedIn={setIsLoggedIn} setRole={setRole} />
+              }
+            />
 
-        {/* LOGIN */}
-        <Route
-  path="/login"
-  element={
-    isLoggedIn
-      ? <Navigate to="/" />
-      : <Login setIsLoggedIn={setIsLoggedIn} setRole={setRole} />
-  }
-/>
+            {/* REGISTER */}
+            <Route
+              path="/register"
+              element={
+                isLoggedIn
+                  ? <Navigate to="/" />
+                  : <Register setIsLoggedIn={setIsLoggedIn} setRole={setRole} />
+              }
+            />
 
-        {/* REGISTER */}
-        <Route path="/register" element={<Register />} />
+            {/* ADMIN ONLY */}
+            <Route
+              path="/dashboard"
+              element={
+                isLoggedIn && role === "admin"
+                  ? <Dashboard />
+                  : <Navigate to="/" />
+              }
+            />
 
-        {/* ADMIN ONLY */}
-        <Route
-          path="/dashboard"
-          element={
-            isLoggedIn && role === "admin"
-              ? <Dashboard />
-              : <Navigate to="/" />
-          }
-        />
+            <Route
+              path="/flats"
+              element={
+                isLoggedIn && role === "admin"
+                  ? <Flats />
+                  : <Navigate to="/" />
+              }
+            />
 
-        <Route
-          path="/flats"
-          element={
-            isLoggedIn && role === "admin"
-              ? <Flats />
-              : <Navigate to="/" />
-          }
-        />
+            {/* ADMIN + RESIDENT */}
+            <Route
+              path="/payments"
+              element={
+                isLoggedIn && (role === "admin" || role === "resident")
+                  ? <Payments />
+                  : <Navigate to="/" />
+              }
+            />
 
-        {/* ADMIN + RESIDENT */}
-        <Route
-          path="/payments"
-          element={
-            isLoggedIn && (role === "admin" || role === "resident")
-              ? <Payments />
-              : <Navigate to="/" />
-          }
-        />
+            <Route
+              path="/complaints"
+              element={
+                isLoggedIn && (role === "admin" || role === "resident")
+                  ? <Complaints />
+                  : <Navigate to="/" />
+              }
+            />
 
-        <Route
-          path="/complaints"
-          element={
-            isLoggedIn && (role === "admin" || role === "resident")
-              ? <Complaints />
-              : <Navigate to="/" />
-          }
-        />
+            {/* SECURITY + ADMIN */}
+            <Route
+              path="/visitors"
+              element={
+                isLoggedIn && (role === "admin" || role === "security")
+                  ? <Visitors />
+                  : <Navigate to="/" />
+              }
+            />
 
-        {/* SECURITY + ADMIN */}
-        <Route
-          path="/visitors"
-          element={
-            isLoggedIn && (role === "admin" || role === "security")
-              ? <Visitors />
-              : <Navigate to="/" />
-          }
-        />
+            {/* RESIDENT ONLY */}
+            <Route
+              path="/mypayments"
+              element={
+                isLoggedIn && role === "resident"
+                  ? <MyPayments />
+                  : <Navigate to="/" />
+              }
+            />
 
-        {/* RESIDENT ONLY */}
-        <Route
-          path="/mypayments"
-          element={
-            isLoggedIn && role === "resident"
-              ? <MyPayments />
-              : <Navigate to="/" />
-          }
-        />
-        <Route path="/resident-visitors" element={
-            isLoggedIn && role === "resident"
-              ? <ResidentVisitors />
-              : <Navigate to="/" />
-          } />
-        <Route
-          path="/mycomplaints"
-          element={
-            isLoggedIn && role === "resident"
-              ? <MyComplaints />
-              : <Navigate to="/" />
-          }
-        />
+            <Route
+              path="/resident-visitors"
+              element={
+                isLoggedIn && role === "resident"
+                  ? <ResidentVisitors />
+                  : <Navigate to="/" />
+              }
+            />
 
-      </Routes>
+            <Route
+              path="/mycomplaints"
+              element={
+                isLoggedIn && role === "resident"
+                  ? <MyComplaints />
+                  : <Navigate to="/" />
+              }
+            />
 
+          </Routes>
+        </main>
+
+        {/* Footer */}
+        <Footer />
+      </div>
     </Router>
   );
 }
