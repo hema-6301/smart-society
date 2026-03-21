@@ -19,7 +19,7 @@ function MyComplaints() {
     try {
 
       const res = await axios.get(
-        "http://smart-society-agm0.onrender.com/api/complaints",
+        "https://smart-society-agm0.onrender.com/api/complaints",
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -41,7 +41,7 @@ function MyComplaints() {
     try {
 
       await axios.post(
-        "http://smart-society-agm0.onrender.com/api/complaints",
+        "https://smart-society-agm0.onrender.com/api/complaints",
         form,
         {
           headers: {
