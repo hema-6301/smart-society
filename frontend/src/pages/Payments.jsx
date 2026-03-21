@@ -12,7 +12,7 @@ export default function Payments() {
 
   const fetchPayments = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/payments", config);
+      const res = await axios.get("http://smart-society-agm0.onrender.com/api/payments", config);
       setPayments(res.data);
     } catch (err) {
       console.error("Fetch payments error:", err);
@@ -21,7 +21,7 @@ export default function Payments() {
 
   const fetchResidents = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/users/residents", config);
+      const res = await axios.get("http://smart-society-agm0.onrender.com/api/users/residents", config);
       setResidents(res.data);
     } catch (err) {
       console.error("Fetch residents error:", err);
@@ -39,7 +39,7 @@ export default function Payments() {
         alert("Please fill all fields");
         return;
       }
-      await axios.post("http://localhost:5000/api/payments", form, config);
+      await axios.post("http://smart-society-agm0.onrender.com/api/payments", form, config);
       setForm({ userId: "", flatNumber: "", month: "", amount: "", status: "Pending" });
       setOpen(false);
       fetchPayments();
@@ -51,7 +51,7 @@ export default function Payments() {
 
   const markPaid = async (p) => {
     try {
-      await axios.put(`http://localhost:5000/api/payments/${p._id}`, { status: "Paid" }, config);
+      await axios.put(`http://smart-society-agm0.onrender.com/api/payments/${p._id}`, { status: "Paid" }, config);
       fetchPayments();
     } catch (err) {
       console.error("Update status error:", err.response?.data || err);
