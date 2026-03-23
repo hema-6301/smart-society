@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { UserIcon, MailIcon, HomeIcon, LockClosedIcon, ShieldCheckIcon } from "@heroicons/react/outline";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -59,50 +60,75 @@ const Register = () => {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          <input
-            type="text"
-            placeholder="Full Name"
-            className="w-full border border-pink-200 rounded-lg p-3 focus:ring-2 focus:ring-pink-300 outline-none transition"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full border border-pink-200 rounded-lg p-3 focus:ring-2 focus:ring-pink-300 outline-none transition"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          {role === "resident" && (
+          {/* Name */}
+          <div className="relative">
+            <UserIcon className="h-5 w-5 text-pink-400 absolute left-3 top-3" />
             <input
               type="text"
-              placeholder="Flat Number"
-              className="w-full border border-pink-200 rounded-lg p-3 focus:ring-2 focus:ring-pink-300 outline-none transition"
-              value={flatNumber}
-              onChange={(e) => setFlatNumber(e.target.value)}
+              placeholder="Full Name"
+              className="w-full pl-10 border border-pink-200 rounded-lg p-3 focus:ring-2 focus:ring-pink-300 outline-none transition"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
             />
-          )}
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full border border-pink-200 rounded-lg p-3 focus:ring-2 focus:ring-pink-300 outline-none transition"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <select
-            className="w-full border border-pink-200 rounded-lg p-3 focus:ring-2 focus:ring-pink-300 outline-none transition"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-          >
-            <option value="resident">Resident</option>
-            <option value="admin">Owner</option>
-            <option value="security">Security</option>
-          </select>
+          </div>
 
+          {/* Email */}
+          <div className="relative">
+            <MailIcon className="h-5 w-5 text-pink-400 absolute left-3 top-3" />
+            <input
+              type="email"
+              placeholder="Email"
+              className="w-full pl-10 border border-pink-200 rounded-lg p-3 focus:ring-2 focus:ring-pink-300 outline-none transition"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Flat Number (only for resident) */}
+          {role === "resident" && (
+            <div className="relative">
+              <HomeIcon className="h-5 w-5 text-pink-400 absolute left-3 top-3" />
+              <input
+                type="text"
+                placeholder="Flat Number"
+                className="w-full pl-10 border border-pink-200 rounded-lg p-3 focus:ring-2 focus:ring-pink-300 outline-none transition"
+                value={flatNumber}
+                onChange={(e) => setFlatNumber(e.target.value)}
+                required
+              />
+            </div>
+          )}
+
+          {/* Password */}
+          <div className="relative">
+            <LockClosedIcon className="h-5 w-5 text-pink-400 absolute left-3 top-3" />
+            <input
+              type="password"
+              placeholder="Password"
+              className="w-full pl-10 border border-pink-200 rounded-lg p-3 focus:ring-2 focus:ring-pink-300 outline-none transition"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Role Dropdown */}
+          <div className="relative">
+            <ShieldCheckIcon className="h-5 w-5 text-pink-400 absolute left-3 top-3" />
+            <select
+              className="w-full pl-10 border border-pink-200 rounded-lg p-3 focus:ring-2 focus:ring-pink-300 outline-none transition"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+            >
+              <option value="resident">🏠 Resident</option>
+              <option value="admin">👑 Owner</option>
+              <option value="security">🛡️ Security</option>
+            </select>
+          </div>
+
+          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-gradient-to-r from-pink-500 to-pink-400 text-white py-3 rounded-lg font-semibold shadow-md hover:scale-[1.02] transition-transform"
