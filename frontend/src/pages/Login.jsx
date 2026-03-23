@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { MailIcon, LockClosedIcon } from "@heroicons/react/outline"; // Heroicons
 
 function Login({ setIsLoggedIn, setRole }) {
   const [email, setEmail] = useState("");
@@ -68,31 +67,22 @@ function Login({ setIsLoggedIn, setRole }) {
           </p>
         )}
 
-        {/* Email Input with Icon */}
-        <div className="relative mb-4">
-          <MailIcon className="h-5 w-5 text-indigo-400 absolute left-3 top-3" />
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full pl-10 border border-indigo-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 rounded-lg p-3 outline-none transition"
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full border border-indigo-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 rounded-lg p-3 mb-4 outline-none transition"
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
-        {/* Password Input with Icon */}
-        <div className="relative mb-4">
-          <LockClosedIcon className="h-5 w-5 text-indigo-400 absolute left-3 top-3" />
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full pl-10 border border-indigo-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 rounded-lg p-3 outline-none transition"
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
+        <input
+          type="password"
+          placeholder="Password"
+          className="w-full border border-indigo-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 rounded-lg p-3 mb-4 outline-none transition"
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
-        {/* Gradient Button */}
         <button
           type="submit"
           className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-3 rounded-lg font-semibold shadow-md hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] transition-transform"
@@ -100,7 +90,6 @@ function Login({ setIsLoggedIn, setRole }) {
           Login
         </button>
 
-        {/* Extra Links */}
         <div className="text-center mt-6 space-y-2">
           <p className="text-slate-600">
             Don’t have an account?{" "}
