@@ -19,10 +19,7 @@ function Login({ setIsLoggedIn, setRole }) {
     try {
       const res = await axios.post(
         "https://smart-society-agm0.onrender.com/api/auth/login",
-        {
-          email,
-          password,
-        }
+        { email, password }
       );
 
       if (res.data && res.data.token) {
@@ -47,33 +44,29 @@ function Login({ setIsLoggedIn, setRole }) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-500 via-purple-200 to-indigo-200 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-purple-100 to-indigo-200 px-4">
       <motion.form
         onSubmit={handleLogin}
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl p-8 w-full max-w-md border border-slate-200"
+        className="bg-white/80 backdrop-blur-lg rounded-2xl shadow-lg p-8 w-full max-w-md border border-indigo-100"
       >
-        <h2 className="text-3xl font-bold text-center text-slate-700 mb-6">
+        <h2 className="text-3xl font-bold text-center text-indigo-700 mb-6">
           Smart Society Login
         </h2>
 
         {error && (
-          <p className="text-red-500 text-center mb-4 font-medium">
-            {error}
-          </p>
+          <p className="text-red-500 text-center mb-4 font-medium">{error}</p>
         )}
 
         {success && (
-          <p className="text-green-600 text-center mb-4 font-medium">
-            {success}
-          </p>
+          <p className="text-green-600 text-center mb-4 font-medium">{success}</p>
         )}
 
         <input
           type="email"
           placeholder="Email"
-          className="w-full border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 rounded-lg p-3 mb-4 outline-none transition"
+          className="w-full border border-indigo-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 rounded-lg p-3 mb-4 outline-none transition"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
@@ -81,7 +74,7 @@ function Login({ setIsLoggedIn, setRole }) {
         <input
           type="password"
           placeholder="Password"
-          className="w-full border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 rounded-lg p-3 mb-4 outline-none transition"
+          className="w-full border border-indigo-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 rounded-lg p-3 mb-4 outline-none transition"
           onChange={(e) => setPassword(e.target.value)}
           required
         />
@@ -98,7 +91,7 @@ function Login({ setIsLoggedIn, setRole }) {
             Don’t have an account?{" "}
             <Link
               to="/register"
-              className="text-indigo-500 font-semibold hover:underline"
+              className="text-purple-600 font-semibold hover:underline"
             >
               Register
             </Link>
