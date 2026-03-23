@@ -107,7 +107,7 @@ export default function Flats() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.length === 0 && <p className="text-gray-400 col-span-3 text-center py-10 italic">No flats found.</p>}
         {filtered.map((f) => (
-          <div key={f._id} className="bg-white/70 backdrop-blur-md rounded-xl border border-gray-200 shadow-md p-6 hover:shadow-pink-500/50 transition">
+          <div key={f._id} className="bg-white/70 backdrop-blur-md rounded-xl border border-gray-200 shadow-md p-6 transition hover:shadow-lg hover:shadow-pink-500">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-lg flex items-center justify-center shadow-inner">
