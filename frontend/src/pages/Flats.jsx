@@ -145,39 +145,60 @@ export default function Flats() {
       {open && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           <div className="bg-white/80 backdrop-blur-md p-8 rounded-2xl w-96 shadow-2xl border border-pink-200 hover:shadow-pink-300/50 transition">
-            <h3 className="text-2xl font-bold mb-6 text-indigo-700">{editingId ? "Edit Flat" : "Add New Flat"}</h3>
+  
+  {/* ✅ Updated Heading */}
+  <h3 className="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-indigo-400 mb-6">
+    {editingId ? "Edit Flat" : "Add Flat"}
+  </h3>
 
-            <div className="grid grid-cols-2 gap-4">
-              {["flat_number","owner_name","owner_email","owner_phone","block","floor"].map(key => (
-                <div key={key}>
-                  <label className="block text-gray-700 mb-1 font-medium">{key.replace("_"," ").toUpperCase()}</label>
-                  <input
-                    type="text"
-                    value={form[key] || ""}
-                    onChange={(e) => setForm({...form, [key]: e.target.value})}
-                    className="w-full border border-gray-300 p-2 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400 outline-none"
-                  />
-                </div>
-              ))}
+  <div className="grid grid-cols-2 gap-4">
+    {["flat_number","owner_name","owner_email","owner_phone","block","floor"].map(key => (
+      <div key={key}>
+        <label className="block text-gray-700 mb-1 font-medium">
+          {key.replace("_"," ").toUpperCase()}
+        </label>
 
-              <div className="col-span-2">
-                <label className="block text-gray-700 mb-1 font-medium">Status</label>
-                <select
-                  value={form.status}
-                  onChange={(e) => setForm({...form, status: e.target.value})}
-                  className="w-full border border-gray-300 p-2 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400 outline-none"
-                >
-                  <option value="occupied">Occupied</option>
-                  <option value="vacant">Vacant</option>
-                </select>
-              </div>
-            </div>
+        {/* ✅ Updated Input Fields */}
+        <input
+          type="text"
+          value={form[key] || ""}
+          onChange={(e) => setForm({...form, [key]: e.target.value})}
+          className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
+        />
+      </div>
+    ))}
 
-            <div className="flex justify-end gap-3 mt-6">
-              <button onClick={() => setOpen(false)} className="px-5 py-2 rounded-lg border hover:bg-gray-100 transition">Cancel</button>
-              <button onClick={saveFlat} className="px-5 py-2 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 transition shadow-md">Save</button>
-            </div>
-          </div>
+    <div className="col-span-2">
+      <label className="block text-gray-700 mb-1 font-medium">Status</label>
+
+      {/* ✅ Updated Select */}
+      <select
+        value={form.status}
+        onChange={(e) => setForm({...form, status: e.target.value})}
+        className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
+      >
+        <option value="occupied">Occupied</option>
+        <option value="vacant">Vacant</option>
+      </select>
+    </div>
+  </div>
+
+  <div className="flex justify-end gap-3 mt-6">
+    <button
+      onClick={() => setOpen(false)}
+      className="px-5 py-2 rounded-lg border hover:bg-gray-100 transition"
+    >
+      Cancel
+    </button>
+
+    <button
+      onClick={saveFlat}
+      className="px-5 py-2 rounded-lg bg-indigo-500 text-white shadow-md hover:bg-indigo-600 hover:shadow-indigo-300/50 transition"
+    >
+      Save
+    </button>
+  </div>
+</div>
         </div>
       )}
 
