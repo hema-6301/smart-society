@@ -51,7 +51,7 @@ function Login({ setIsLoggedIn, setRole }) {
         animate={{ opacity: 1, y: 0 }}
         className="bg-white/80 backdrop-blur-lg rounded-2xl shadow-lg p-8 w-full max-w-md border border-indigo-100"
       >
-        <h2 className="text-3xl font-bold text-center text-indigo-700 mb-6">
+        <h2 className="text-5xl font-bold text-center text-indigo-700 mb-6">
           Smart Society Login
         </h2>
 
