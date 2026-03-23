@@ -101,7 +101,7 @@ export default function Complaints() {
 
   return (
 
-    <div className="min-h-screen bg-gradient-to-br from-pink-300 via-white to-purple-300 p-10">
+    <div className="min-h-screen bg-gradient-to-br from-pink-200 via-white to-purple-300 p-10">
 
       <div className="max-w-6xl mx-auto space-y-8">
 
