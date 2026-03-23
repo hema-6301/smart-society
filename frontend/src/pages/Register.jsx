@@ -41,19 +41,19 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-purple-100 to-pink-100 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 via-pink-100 to-pink-200 px-4">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="bg-white/80 backdrop-blur-md rounded-3xl shadow-lg p-10 w-full max-w-md border border-indigo-100 transition duration-300 hover:shadow-[0_0_25px_rgba(168,85,247,0.4)]"
+        className="bg-white/80 backdrop-blur-md rounded-3xl shadow-lg p-10 w-full max-w-md border border-pink-100 transition duration-300 hover:shadow-[0_0_25px_rgba(236,72,153,0.4)]"
       >
-        <h2 className="text-4xl font-extrabold text-center text-indigo-700 mb-6">
+        <h2 className="text-4xl font-extrabold text-center text-pink-700 mb-6">
           Create Account
         </h2>
 
         {message && (
-          <p className="text-center text-sm mb-4 text-purple-600 font-medium">
+          <p className="text-center text-sm mb-4 text-pink-600 font-medium">
             {message}
           </p>
         )}
@@ -62,7 +62,7 @@ const Register = () => {
           <input
             type="text"
             placeholder="Full Name"
-            className="w-full border border-indigo-200 rounded-lg p-3 focus:ring-2 focus:ring-purple-300 outline-none transition"
+            className="w-full border border-pink-200 rounded-lg p-3 focus:ring-2 focus:ring-pink-300 outline-none transition"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -70,7 +70,7 @@ const Register = () => {
           <input
             type="email"
             placeholder="Email"
-            className="w-full border border-indigo-200 rounded-lg p-3 focus:ring-2 focus:ring-purple-300 outline-none transition"
+            className="w-full border border-pink-200 rounded-lg p-3 focus:ring-2 focus:ring-pink-300 outline-none transition"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -79,7 +79,7 @@ const Register = () => {
             <input
               type="text"
               placeholder="Flat Number"
-              className="w-full border border-indigo-200 rounded-lg p-3 focus:ring-2 focus:ring-purple-300 outline-none transition"
+              className="w-full border border-pink-200 rounded-lg p-3 focus:ring-2 focus:ring-pink-300 outline-none transition"
               value={flatNumber}
               onChange={(e) => setFlatNumber(e.target.value)}
               required
@@ -88,13 +88,13 @@ const Register = () => {
           <input
             type="password"
             placeholder="Password"
-            className="w-full border border-indigo-200 rounded-lg p-3 focus:ring-2 focus:ring-purple-300 outline-none transition"
+            className="w-full border border-pink-200 rounded-lg p-3 focus:ring-2 focus:ring-pink-300 outline-none transition"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
           <select
-            className="w-full border border-indigo-200 rounded-lg p-3 focus:ring-2 focus:ring-purple-300 outline-none transition"
+            className="w-full border border-pink-200 rounded-lg p-3 focus:ring-2 focus:ring-pink-300 outline-none transition"
             value={role}
             onChange={(e) => setRole(e.target.value)}
           >
@@ -105,7 +105,7 @@ const Register = () => {
 
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-indigo-500 to-purple-400 text-white py-3 rounded-lg font-semibold shadow-md hover:scale-[1.02] transition-transform"
+            className="w-full bg-gradient-to-r from-pink-500 to-pink-400 text-white py-3 rounded-lg font-semibold shadow-md hover:scale-[1.02] transition-transform"
           >
             Register
           </button>
@@ -116,7 +116,7 @@ const Register = () => {
             Already have an account?{" "}
             <Link
               to="/login"
-              className="text-indigo-500 font-semibold hover:underline"
+              className="text-pink-600 font-semibold hover:underline"
             >
               Login
             </Link>
