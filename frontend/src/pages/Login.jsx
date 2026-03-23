@@ -4,97 +4,109 @@ import axios from "axios";
 import { motion } from "framer-motion";
 
 function Login({ setIsLoggedIn, setRole }) {
-const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
-const [error, setError] = useState("");
-const [success, setSuccess] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-const handleLogin = async (e) => {
-e.preventDefault();
-setError("");
-setSuccess("");
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
 
-try {  
-  const res = await axios.post("https://smart-society-agm0.onrender.com/api/auth/login", {  
-    email,  
-    password,  
-  });  
+    try {
+      const res = await axios.post(
+        "https://smart-society-agm0.onrender.com/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
 
-  if (res.data && res.data.token) {  
-    localStorage.setItem("isLoggedIn", "true");  
-    localStorage.setItem("token", res.data.token);  
-    localStorage.setItem("role", res.data.role);  
+      if (res.data && res.data.token) {
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("role", res.data.role);
 
-    setIsLoggedIn(true);  
-    setRole(res.data.role);  
+        setIsLoggedIn(true);
+        setRole(res.data.role);
 
-    setSuccess("Login Successful!");  
+        setSuccess("Login Successful!");
 
-    // Delay navigation so message shows  
-    setTimeout(() => {  
-      navigate("/");  
-    }, 1000);  
-  } else {  
-    setError("Invalid credentials");  
-  }  
-} catch (err) {  
-  setError("Invalid credentials");  
-}
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
+      } else {
+        setError("Invalid credentials");
+      }
+    } catch (err) {
+      setError("Invalid credentials");
+    }
+  };
 
-};
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 px-4">
+      <motion.form
+        onSubmit={handleLogin}
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl p-8 w-full max-w-md border border-slate-200"
+      >
+        <h2 className="text-3xl font-bold text-center text-slate-700 mb-6">
+          Smart Society Login
+        </h2>
 
-return (
-<div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-200 via-purple-200 to-indigo-200 px-4">
-<motion.form
-className="bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl p-8 w-full max-w-md border border-indigo-200"
-onSubmit={handleLogin}
-initial={{ opacity: 0, y: 40 }}
-animate={{ opacity: 1, y: 0 }}
->
-<h2 className="text-3xl font-extrabold text-center text-purple-500 mb-6">
-Smart Society Login
-</h2>
+        {error && (
+          <p className="text-red-500 text-center mb-4 font-medium">
+            {error}
+          </p>
+        )}
 
-{error && <p className="text-red-600 text-center mb-4">{error}</p>}  
-    {success && <p className="text-purple-500 text-center mb-4">{success}</p>}  
+        {success && (
+          <p className="text-green-600 text-center mb-4 font-medium">
+            {success}
+          </p>
+        )}
 
-    <input  
-      type="email"  
-      placeholder="Email"  
-      className="w-full border rounded-lg p-3 mb-4"  
-      onChange={(e) => setEmail(e.target.value)}  
-      required  
-    />  
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 rounded-lg p-3 mb-4 outline-none transition"
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
-    <input  
-      type="password"  
-      placeholder="Password"  
-      className="w-full border rounded-lg p-3 mb-4"  
-      onChange={(e) => setPassword(e.target.value)}  
-      required  
-    />  
+        <input
+          type="password"
+          placeholder="Password"
+          className="w-full border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 rounded-lg p-3 mb-4 outline-none transition"
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
-    <button  
-      type="submit"  
-      className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-3 rounded-lg"  
-    >  
-      Login  
-    </button>  
+        <button
+          type="submit"
+          className="w-full bg-indigo-500 hover:bg-indigo-600 transition text-white py-3 rounded-lg font-semibold shadow-md"
+        >
+          Login
+        </button>
 
-    <div className="text-center mt-6">  
-      <p>  
-        Don’t have an account?{" "}  
-        <Link to="/register" className="text-indigo-500 font-semibold">  
-          Register  
-        </Link>  
-      </p>  
-    </div>  
-  </motion.form>  
-</div>
-
-);
+        <div className="text-center mt-6">
+          <p className="text-slate-600">
+            Don’t have an account?{" "}
+            <Link
+              to="/register"
+              className="text-indigo-500 font-semibold hover:underline"
+            >
+              Register
+            </Link>
+          </p>
+        </div>
+      </motion.form>
+    </div>
+  );
 }
 
 export default Login;
