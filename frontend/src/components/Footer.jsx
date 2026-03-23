@@ -3,7 +3,7 @@ import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-300 text-gray-900 py-16 overflow-hidden">
+    <footer className="relative bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 text-gray-900 py-16 overflow-hidden">
       
       {/* Decorative Glow Circles */}
       <div className="absolute top-0 left-1/2 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl -translate-x-1/2 animate-pulse-slow"></div>
