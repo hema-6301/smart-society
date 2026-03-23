@@ -144,7 +144,7 @@ export default function Flats() {
       {/* Modal */}
       {open && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl p-8 w-96 shadow-2xl">
+          <div className="bg-white/80 backdrop-blur-md p-8 rounded-2xl w-96 shadow-2xl border border-pink-200 hover:shadow-pink-300/50 transition">
             <h3 className="text-2xl font-bold mb-6 text-indigo-700">{editingId ? "Edit Flat" : "Add New Flat"}</h3>
 
             <div className="grid grid-cols-2 gap-4">
