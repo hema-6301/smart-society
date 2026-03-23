@@ -53,12 +53,12 @@ onSubmit={handleLogin}
 initial={{ opacity: 0, y: 40 }}
 animate={{ opacity: 1, y: 0 }}
 >
-<h2 className="text-3xl font-extrabold text-center text-purple-700 mb-6">
+<h2 className="text-3xl font-extrabold text-center text-purple-500 mb-6">
 Smart Society Login
 </h2>
 
 {error && <p className="text-red-600 text-center mb-4">{error}</p>}  
-    {success && <p className="text-purple-600 text-center mb-4">{success}</p>}  
+    {success && <p className="text-purple-500 text-center mb-4">{success}</p>}  
 
     <input  
       type="email"  
@@ -78,7 +78,7 @@ Smart Society Login
 
     <button  
       type="submit"  
-      className="w-full bg-gradient-to-r from-indigo-600 to-purple-500 text-white py-3 rounded-lg"  
+      className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-3 rounded-lg"  
     >  
       Login  
     </button>  
@@ -86,7 +86,7 @@ Smart Society Login
     <div className="text-center mt-6">  
       <p>  
         Don’t have an account?{" "}  
-        <Link to="/register" className="text-indigo-600 font-semibold">  
+        <Link to="/register" className="text-indigo-500 font-semibold">  
           Register  
         </Link>  
       </p>  
