@@ -47,7 +47,7 @@ function Login({ setIsLoggedIn, setRole }) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-500 via-purple-200 to-indigo-200 px-4">
       <motion.form
         onSubmit={handleLogin}
         initial={{ opacity: 0, y: 40 }}
