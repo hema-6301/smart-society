@@ -46,7 +46,7 @@ try {
 };
 
 return (
-<div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-200 via-emerald-300 to-yellow-200 px-4">
+<div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-200 via-emerald-300 to-indigo-200 px-4">
 <motion.form
 className="bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl p-8 w-full max-w-md border border-green-200"
 onSubmit={handleLogin}
