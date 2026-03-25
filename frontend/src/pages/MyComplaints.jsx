@@ -99,9 +99,10 @@ function MyComplaints() {
           required
         />
 
-       <button className="w-full bg-indigo-400 hover:bg-indigo-500 text-white font-semibold px-5 py-3 rounded-lg transition duration-200">
+     <button className="bg-indigo-400 hover:bg-indigo-500 text-white px-5 py-2 rounded transition duration-300 shadow hover:shadow-md">
           Submit Complaint
         </button>
+     
 
       </form>
 
