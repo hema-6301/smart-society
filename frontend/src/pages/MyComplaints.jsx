@@ -108,22 +108,18 @@ function MyComplaints() {
 
       {/* Complaint List */}
 
-     <div className="max-w-2xl mx-auto bg-white shadow-md rounded-xl p-8 border border-gray-100">
+ <div className="bg-white shadow-md rounded-lg p-6 transition duration-300 hover:shadow-lg">
         {complaints.length === 0 ? (
           <p className="text-gray-500 text-center">No Complaints Yet</p>
         ) : (
           complaints.map((c) => (
             <div
               key={c._id}
-              className="border border-gray-100 p-5 mb-5 rounded-lg shadow-sm hover:shadow-md transition duration-200 bg-gradient-to-r from-white to-indigo-50"
+              className="border p-3 mb-3 rounded transition duration-300 shadow-sm hover:shadow-md"
             >
-              <h3 className="font-bold text-lg text-indigo-700 mb-2">
-                {c.title}
-              </h3>
-              <p className="text-gray-700 mb-2">{c.description}</p>
-              <p className="text-sm text-gray-500 italic">
-                Status: {c.status}
-              </p>
+              <h3 className="font-semibold text-indigo-700">{c.title}</h3>
+              <p className="text-gray-700">{c.description}</p>
+              <p className="text-sm text-gray-500">Status: {c.status}</p>
 
             </div>
 
