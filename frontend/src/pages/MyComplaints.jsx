@@ -50,20 +50,20 @@ function MyComplaints() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-pink-50 p-10">
-      <h2 className="text-4xl font-extrabold mb-8 text-center text-indigo-600">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-10">
+      <h2 className="text-3xl font-bold mb-6 text-indigo-600 text-center">
         🛠️ My Complaints
       </h2>
 
       {/* Complaint Form */}
       <form
         onSubmit={addComplaint}
-        className="bg-white shadow-md rounded-xl p-8 mb-10 max-w-xl mx-auto border border-gray-100"
+        className="bg-white shadow-md rounded-lg p-6 mb-6 transition duration-300 hover:shadow-lg"
       >
         <input
           type="text"
           placeholder="Complaint Title"
-          className="w-full border border-gray-200 p-4 rounded-lg mb-5 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+          className="w-full border p-3 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-300 transition duration-300"
           value={form.title}
           onChange={(e) => setForm({ ...form, title: e.target.value })}
           required
@@ -71,34 +71,30 @@ function MyComplaints() {
 
         <textarea
           placeholder="Write complaint description..."
-          className="w-full border border-gray-200 p-4 rounded-lg mb-5 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+          className="w-full border p-3 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-300 transition duration-300"
           value={form.description}
           onChange={(e) => setForm({ ...form, description: e.target.value })}
           required
         />
 
-        <button className="w-full bg-indigo-400 hover:bg-indigo-500 text-white font-semibold px-5 py-3 rounded-lg transition duration-200">
+        <button className="bg-indigo-400 hover:bg-indigo-500 text-white px-5 py-2 rounded transition duration-300 shadow hover:shadow-md">
           Submit Complaint
         </button>
       </form>
 
       {/* Complaint List */}
-      <div className="max-w-2xl mx-auto bg-white shadow-md rounded-xl p-8 border border-gray-100">
+      <div className="bg-white shadow-md rounded-lg p-6 transition duration-300 hover:shadow-lg">
         {complaints.length === 0 ? (
           <p className="text-gray-500 text-center">No Complaints Yet</p>
         ) : (
           complaints.map((c) => (
             <div
               key={c._id}
-              className="border border-gray-100 p-5 mb-5 rounded-lg shadow-sm hover:shadow-md transition duration-200 bg-gradient-to-r from-white to-indigo-50"
+              className="border p-3 mb-3 rounded transition duration-300 shadow-sm hover:shadow-md"
             >
-              <h3 className="font-bold text-lg text-indigo-700 mb-2">
-                {c.title}
-              </h3>
-              <p className="text-gray-700 mb-2">{c.description}</p>
-              <p className="text-sm text-gray-500 italic">
-                Status: {c.status}
-              </p>
+              <h3 className="font-semibold text-indigo-700">{c.title}</h3>
+              <p className="text-gray-700">{c.description}</p>
+              <p className="text-sm text-gray-500">Status: {c.status}</p>
             </div>
           ))
         )}
