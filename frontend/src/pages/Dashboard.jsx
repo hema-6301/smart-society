@@ -76,18 +76,18 @@ export default function Dashboard() {
     </div>
   );
 
-   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100 p-6">
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-pink-200 via-lavender to-indigo-200 p-6">
       <div className="max-w-7xl mx-auto space-y-10">
 
         {/* Header */}
         <div className="text-center">
           <h1 className="text-4xl font-extrabold">
-            <span className="text-black">🏡</span>{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-indigo-400">
-              Society Dashboard
-            </span>
-          </h1>
+  <span className="text-black">🏡</span>{" "}
+  <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-indigo-400">
+    Society Dashboard
+  </span>
+</h1>
           <p className="text-gray-600 text-sm mt-2">Overview of your community</p>
         </div>
 
@@ -96,9 +96,9 @@ export default function Dashboard() {
           {statCards.map(({ label, value, icon: Icon, light, glow }) => (
             <div
               key={label}
-              className={`rounded-2xl p-6 bg-white shadow-md border border-gray-200 transition hover:scale-105 ${glow}`}
+              className={`rounded-2xl p-6 bg-white/70 backdrop-blur-md border border-gray-200 shadow-md transition hover:scale-105 ${glow}`}
             >
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${light} shadow-sm`}>
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${light} shadow-md`}>
                 <Icon className="w-6 h-6" />
               </div>
               <p className="text-2xl font-extrabold text-gray-800">{value}</p>
@@ -109,8 +109,9 @@ export default function Dashboard() {
 
         {/* Charts */}
         <div className="grid md:grid-cols-2 gap-6">
-          {/* Finance Bar Chart */}
-          <div className="rounded-2xl p-6 bg-white shadow-md border border-gray-200">
+
+          {/* Cinematic Finance Bar Chart */}
+          <div className="rounded-2xl p-6 bg-white/70 backdrop-blur-md border border-gray-200 shadow-md">
             <h2 className="font-semibold text-indigo-600 mb-4">Financial Overview</h2>
             <ResponsiveContainer width="100%" height={220}>
               <BarChart data={financeData}>
@@ -135,50 +136,50 @@ export default function Dashboard() {
           </div>
 
           {/* Ticket Status PieChart */}
-          <div className="rounded-2xl p-6 bg-white shadow-md border border-gray-200">
+          <div className="rounded-2xl p-6 bg-white/70 backdrop-blur-md border border-gray-200 shadow-md">
             <h2 className="font-semibold text-indigo-600 mb-4">Ticket Status</h2>
             <ResponsiveContainer width="100%" height={220}>
               <PieChart>
-                <Pie
-                  data={ticketStatusData}
-                  cx="50%" cy="50%"
-                  innerRadius={55} outerRadius={85}
-                  dataKey="value" paddingAngle={6}
-                >
-                  {ticketStatusData.map((_, i) => (
-                    <Cell key={i} fill={PIE_COLORS[i]} stroke="white" strokeWidth={2} />
-                  ))}
-                </Pie>
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "rgba(255,255,255,0.95)",
-                    borderRadius: "8px",
-                    border: "1px solid #ddd",
-                    fontSize: "12px"
-                  }}
-                />
-                <Legend wrapperStyle={{ fontSize: "12px", color: "#555" }} />
-              </PieChart>
+  <Pie
+    data={ticketStatusData}
+    cx="50%" cy="50%"
+    innerRadius={55} outerRadius={85}
+    dataKey="value" paddingAngle={6}
+  >
+    {ticketStatusData.map((_, i) => (
+      <Cell key={i} fill={PIE_COLORS[i]} stroke="white" strokeWidth={2} />
+    ))}
+  </Pie>
+  <Tooltip
+    contentStyle={{
+      backgroundColor: "rgba(255,255,255,0.9)",
+      borderRadius: "8px",
+      border: "1px solid #ddd",
+      fontSize: "12px"
+    }}
+  />
+  <Legend wrapperStyle={{ fontSize: "12px", color: "#4292dd" }} />
+</PieChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         {/* Recent Tickets */}
-        <div className="rounded-2xl shadow-md bg-white border border-gray-200 overflow-hidden">
+        <div className="rounded-2xl shadow-md bg-white/70 backdrop-blur-md border border-gray-200 overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-pink-100 to-indigo-100">
             <h2 className="font-semibold text-indigo-600">Recent Maintenance Tickets</h2>
           </div>
           <div className="divide-y divide-gray-100">
             {tickets.slice(0,5).map(t => (
-              <div key={t._id || t.id} className="px-6 py-4 flex items-center justify-between hover:bg-indigo-50 transition">
+              <div key={t._id || t.id} className="px-6 py-4 flex items-center justify-between hover:bg-pink-50 transition">
                 <div>
                   <p className="text-sm font-medium text-gray-800">{t.title}</p>
                   <p className="text-xs text-gray-500">Flat {t.flatNumber || t.flat_number} · {t.category || "Maintenance"}</p>
                 </div>
                 <span className={`text-xs px-3 py-1 rounded-full font-medium ${
-                  t.status === "Resolved" ? "bg-green-100 text-green-700" :
-                  t.status === "In Progress" ? "bg-yellow-100 text-yellow-700" :
-                  "bg-pink-100 text-pink-700"
+                  t.status === "Resolved" ? "bg-green-200 text-green-700" :
+                  t.status === "In Progress" ? "bg-yellow-200 text-yellow-700" :
+                  "bg-pink-200 text-pink-700"
                 }`}>
                   {t.status.replace("_", " ")}
                 </span>
@@ -192,3 +193,4 @@ export default function Dashboard() {
       </div>
     </div>
   );
+}
