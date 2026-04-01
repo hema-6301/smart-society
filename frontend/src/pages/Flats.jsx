@@ -144,7 +144,7 @@ export default function Flats() {
                 {f.status}
               </span>
             </div>
-            <p className="font-semibold text-gray-800">{f.owner_name || "No Owner"}</p>
+            <p className="font-semibold text-gray-800">{f.owner_name || "Available"}</p>
             {f.owner_phone && <p className="text-sm text-gray-500">{f.owner_phone}</p>}
             {f.owner_email && <p className="text-sm text-gray-500">{f.owner_email}</p>}
             {f.block && <p className="text-sm text-gray-400">Block {f.block}{f.floor ? `, Floor ${f.floor}` : ""}</p>}
