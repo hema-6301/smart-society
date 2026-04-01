@@ -51,7 +51,7 @@ export default function Flats() {
     setOpen(true);
   };
 
-  // ✅ SAVE FLAT (FIXED)
+  // SAVE FLAT with vacant fix
   const saveFlat = async () => {
     try {
       if (!form.flat_number) {
@@ -65,8 +65,6 @@ export default function Flats() {
       }
 
       let data = { ...form };
-
-      // 🔥 IMPORTANT FIX
       if (form.status === "vacant") {
         data.owner_name = null;
         data.owner_email = null;
@@ -74,17 +72,9 @@ export default function Flats() {
       }
 
       if (editingId) {
-        await axios.put(
-          `https://smart-society-agm0.onrender.com/api/flats/${editingId}`,
-          data,
-          config
-        );
+        await axios.put(`https://smart-society-agm0.onrender.com/api/flats/${editingId}`, data, config);
       } else {
-        await axios.post(
-          "https://smart-society-agm0.onrender.com/api/flats",
-          data,
-          config
-        );
+        await axios.post("https://smart-society-agm0.onrender.com/api/flats", data, config);
       }
 
       setForm(empty);
@@ -100,17 +90,13 @@ export default function Flats() {
   const deleteFlat = async (id) => {
     if (!window.confirm("Are you sure you want to delete this flat?")) return;
     try {
-      await axios.delete(
-        `https://smart-society-agm0.onrender.com/api/flats/${id}`,
-        config
-      );
+      await axios.delete(`https://smart-society-agm0.onrender.com/api/flats/${id}`, config);
       fetchFlats();
     } catch (err) {
       console.error("Delete flat error:", err.response?.data || err);
     }
   };
 
-  // ✅ SAFE SEARCH FIX
   const filtered = flats.filter(f =>
     f.flat_number.toLowerCase().includes(search.toLowerCase()) ||
     (f.owner_name || "").toLowerCase().includes(search.toLowerCase())
@@ -120,138 +106,156 @@ export default function Flats() {
     <div className="p-8 max-w-6xl mx-auto space-y-8 bg-gradient-to-br from-indigo-200 via-white to-purple-200 rounded-xl shadow-lg">
 
       {/* Header */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-extrabold text-indigo-800">
-          🏢 Flats & Residents
-        </h1>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-extrabold text-indigo-800">🏢 Flats & Residents</h1>
+          <p className="text-gray-500 text-sm">Manage all flats and owner information</p>
+        </div>
         <button
           onClick={() => openModal()}
-          className="bg-indigo-600 text-white px-4 py-2 rounded-lg"
+          className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-5 py-2 rounded-lg shadow-md transition flex items-center"
         >
-          + Add Flat
+          <span className="mr-2 text-lg">+</span> Add Flat
         </button>
       </div>
 
       {/* Search */}
       <input
         type="text"
-        placeholder="Search..."
-        className="border p-2 rounded"
+        placeholder="🔍 Search by flat or owner..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        className="border border-gray-300 p-3 rounded-lg w-full max-w-sm shadow-sm focus:ring-2 focus:ring-indigo-400 outline-none"
       />
 
-      {/* Flats List */}
-      <div className="grid md:grid-cols-3 gap-4">
-        {filtered.map(f => (
-          <div key={f._id} className="bg-white p-4 rounded shadow">
-            <h3 className="font-bold">Flat {f.flat_number}</h3>
-            <p>Status: {f.status}</p>
-            <p>{f.owner_name || "No Owner"}</p>
-
-            <div className="flex gap-2 mt-2">
-              <button onClick={() => openModal(f)}>Edit</button>
-              <button onClick={() => deleteFlat(f._id)}>Delete</button>
+      {/* Flats Grid */}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filtered.length === 0 && <p className="text-gray-400 col-span-3 text-center py-10 italic">No flats found.</p>}
+        {filtered.map((f) => (
+          <div key={f._id} className="bg-white/70 backdrop-blur-md rounded-xl border border-gray-200 shadow-md p-6 transition hover:shadow-lg hover:shadow-pink-300">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-lg flex items-center justify-center shadow-inner">
+                  <span className="text-indigo-600 font-bold">🏠</span>
+                </div>
+                <span className="font-bold text-gray-900 text-lg">Flat {f.flat_number}</span>
+              </div>
+              <span className={`text-xs px-3 py-1 rounded-full font-medium shadow-sm ${f.status === "occupied" ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"}`}>
+                {f.status}
+              </span>
+            </div>
+            <p className="font-semibold text-gray-800">{f.owner_name || "No Owner"}</p>
+            {f.owner_phone && <p className="text-sm text-gray-500">{f.owner_phone}</p>}
+            {f.owner_email && <p className="text-sm text-gray-500">{f.owner_email}</p>}
+            {f.block && <p className="text-sm text-gray-400">Block {f.block}{f.floor ? `, Floor ${f.floor}` : ""}</p>}
+            <div className="flex gap-3 mt-5">
+              <button
+                onClick={() => openModal(f)}
+                className="text-indigo-600 border border-indigo-600 px-4 py-1.5 rounded-lg hover:bg-indigo-50 transition"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => deleteFlat(f._id)}
+                className="text-red-500 border border-red-500 px-4 py-1.5 rounded-lg hover:bg-red-50 transition"
+              >
+                Delete
+              </button>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Modal */}
+            {/* Modal */}
       {open && (
-        <div className="fixed inset-0 bg-black/40 flex justify-center items-center">
-          <div className="bg-white p-6 rounded w-96">
-
-            <h2 className="text-xl font-bold mb-4">
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+          <div className="bg-white/80 backdrop-blur-md p-8 rounded-2xl w-96 shadow-2xl border border-pink-200 hover:shadow-pink-300/50 transition">
+            <h3 className="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-indigo-400 mb-6">
               {editingId ? "Edit Flat" : "Add Flat"}
-            </h2>
+            </h3>
 
-            {/* Flat Number */}
-            <input
-              type="text"
-              placeholder="Flat Number"
-              value={form.flat_number}
-              onChange={(e) =>
-                setForm({ ...form, flat_number: e.target.value })
-              }
-              className="w-full border p-2 mb-2"
-            />
-
-            {/* Status */}
-            <select
-              value={form.status}
-              onChange={(e) =>
-                setForm({ ...form, status: e.target.value })
-              }
-              className="w-full border p-2 mb-2"
-            >
-              <option value="occupied">Occupied</option>
-              <option value="vacant">Vacant</option>
-            </select>
-
-            {/* 🔥 Show owner only if occupied */}
-            {form.status === "occupied" && (
-              <>
+            <div className="grid grid-cols-2 gap-4">
+              {/* Flat Number */}
+              <div className="col-span-2">
+                <label className="block text-gray-700 mb-1 font-medium">Flat Number</label>
                 <input
                   type="text"
-                  placeholder="Owner Name"
-                  value={form.owner_name}
-                  onChange={(e) =>
-                    setForm({ ...form, owner_name: e.target.value })
-                  }
-                  className="w-full border p-2 mb-2"
+                  value={form.flat_number}
+                  onChange={(e) => setForm({ ...form, flat_number: e.target.value })}
+                  className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
                 />
+              </div>
 
+              {/* Status */}
+              <div className="col-span-2">
+                <label className="block text-gray-700 mb-1 font-medium">Status</label>
+                <select
+                  value={form.status}
+                  onChange={(e) => setForm({ ...form, status: e.target.value })}
+                  className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
+                >
+                  <option value="occupied">Occupied</option>
+                  <option value="vacant">Vacant</option>
+                </select>
+              </div>
+
+              {/* Owner fields only if occupied */}
+              {form.status === "occupied" && (
+                <>
+                  {["owner_name", "owner_email", "owner_phone"].map((key) => (
+                    <div key={key} className="col-span-2">
+                      <label className="block text-gray-700 mb-1 font-medium">
+                        {key.replace("_", " ").toUpperCase()}
+                      </label>
+                      <input
+                        type="text"
+                        value={form[key] || ""}
+                        onChange={(e) => setForm({ ...form, [key]: e.target.value })}
+                        className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
+                      />
+                    </div>
+                  ))}
+                </>
+              )}
+
+              {/* Block */}
+              <div className="col-span-2">
+                <label className="block text-gray-700 mb-1 font-medium">Block</label>
                 <input
                   type="text"
-                  placeholder="Email"
-                  value={form.owner_email}
-                  onChange={(e) =>
-                    setForm({ ...form, owner_email: e.target.value })
-                  }
-                  className="w-full border p-2 mb-2"
+                  value={form.block}
+                  onChange={(e) => setForm({ ...form, block: e.target.value })}
+                  className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
                 />
+              </div>
 
+              {/* Floor */}
+              <div className="col-span-2">
+                <label className="block text-gray-700 mb-1 font-medium">Floor</label>
                 <input
                   type="text"
-                  placeholder="Phone"
-                  value={form.owner_phone}
-                  onChange={(e) =>
-                    setForm({ ...form, owner_phone: e.target.value })
-                  }
-                  className="w-full border p-2 mb-2"
+                  value={form.floor}
+                  onChange={(e) => setForm({ ...form, floor: e.target.value })}
+                  className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
                 />
-              </>
-            )}
+              </div>
+            </div>
 
-            {/* Block & Floor */}
-            <input
-              type="text"
-              placeholder="Block"
-              value={form.block}
-              onChange={(e) =>
-                setForm({ ...form, block: e.target.value })
-              }
-              className="w-full border p-2 mb-2"
-            />
-
-            <input
-              type="text"
-              placeholder="Floor"
-              value={form.floor}
-              onChange={(e) =>
-                setForm({ ...form, floor: e.target.value })
-              }
-              className="w-full border p-2 mb-2"
-            />
-
-            <div className="flex justify-end gap-2 mt-3">
-              <button onClick={() => setOpen(false)}>Cancel</button>
-              <button onClick={saveFlat} className="bg-indigo-600 text-white px-3 py-1 rounded">
+            {/* Buttons */}
+            <div className="flex justify-end gap-3 mt-6">
+              <button
+                onClick={() => setOpen(false)}
+                className="px-5 py-2 rounded-lg border hover:bg-gray-100 transition"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={saveFlat}
+                className="px-5 py-2 rounded-lg bg-indigo-500 text-white shadow-md hover:bg-indigo-600 hover:shadow-indigo-300/50 transition"
+              >
                 Save
               </button>
             </div>
-
           </div>
         </div>
       )}
