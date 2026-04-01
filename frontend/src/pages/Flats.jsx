@@ -175,71 +175,71 @@ export default function Flats() {
             </h3>
 
             <div className="grid grid-cols-2 gap-4">
-              {/* Flat Number */}
-              <div className="col-span-2">
-                <label className="block text-gray-700 mb-1 font-medium">Flat Number</label>
-                <input
-                  type="text"
-                  value={form.flat_number}
-                  onChange={(e) => setForm({ ...form, flat_number: e.target.value })}
-                  className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
-                />
-              </div>
+  {/* Flat Number */}
+  <div className="col-span-2">
+    <label className="block text-gray-700 mb-1 font-medium">Flat Number</label>
+    <input
+      type="text"
+      value={form.flat_number}
+      onChange={(e) => setForm({ ...form, flat_number: e.target.value })}
+      className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
+    />
+  </div>
 
-              {/* Status */}
-              <div className="col-span-2">
-                <label className="block text-gray-700 mb-1 font-medium">Status</label>
-                <select
-                  value={form.status}
-                  onChange={(e) => setForm({ ...form, status: e.target.value })}
-                  className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
-                >
-                  <option value="occupied">Occupied</option>
-                  <option value="vacant">Vacant</option>
-                </select>
-              </div>
+  {/* Status */}
+  <div className="col-span-2">
+    <label className="block text-gray-700 mb-1 font-medium">Status</label>
+    <select
+      value={form.status}
+      onChange={(e) => setForm({ ...form, status: e.target.value })}
+      className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
+    >
+      <option value="occupied">Occupied</option>
+      <option value="vacant">Vacant</option>
+    </select>
+  </div>
 
-              {/* Owner fields only if occupied */}
-              {form.status === "occupied" && (
-                <>
-                  {["owner_name", "owner_email", "owner_phone"].map((key) => (
-                    <div key={key} className="col-span-2">
-                      <label className="block text-gray-700 mb-1 font-medium">
-                        {key.replace("_", " ").toUpperCase()}
-                      </label>
-                      <input
-                        type="text"
-                        value={form[key] || ""}
-                        onChange={(e) => setForm({ ...form, [key]: e.target.value })}
-                        className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
-                      />
-                    </div>
-                  ))}
-                </>
-              )}
+  {/* Owner fields only if occupied */}
+  {form.status === "occupied" && (
+    <>
+      {["owner_name", "owner_email", "owner_phone"].map((key) => (
+        <div key={key}>
+          <label className="block text-gray-700 mb-1 font-medium">
+            {key.replace("_", " ").toUpperCase()}
+          </label>
+          <input
+            type="text"
+            value={form[key] || ""}
+            onChange={(e) => setForm({ ...form, [key]: e.target.value })}
+            className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
+          />
+        </div>
+      ))}
+    </>
+  )}
 
-              {/* Block */}
-              <div className="col-span-2">
-                <label className="block text-gray-700 mb-1 font-medium">Block</label>
-                <input
-                  type="text"
-                  value={form.block}
-                  onChange={(e) => setForm({ ...form, block: e.target.value })}
-                  className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
-                />
-              </div>
+  {/* Block */}
+  <div>
+    <label className="block text-gray-700 mb-1 font-medium">Block</label>
+    <input
+      type="text"
+      value={form.block}
+      onChange={(e) => setForm({ ...form, block: e.target.value })}
+      className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
+    />
+  </div>
 
-              {/* Floor */}
-              <div className="col-span-2">
-                <label className="block text-gray-700 mb-1 font-medium">Floor</label>
-                <input
-                  type="text"
-                  value={form.floor}
-                  onChange={(e) => setForm({ ...form, floor: e.target.value })}
-                  className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
-                />
-              </div>
-            </div>
+  {/* Floor */}
+  <div>
+    <label className="block text-gray-700 mb-1 font-medium">Floor</label>
+    <input
+      type="text"
+      value={form.floor}
+      onChange={(e) => setForm({ ...form, floor: e.target.value })}
+      className="w-full border p-2 rounded-lg shadow-sm bg-white/70 focus:ring-2 focus:ring-pink-300 outline-none"
+    />
+  </div>
+</div>
 
             {/* Buttons */}
             <div className="flex justify-end gap-3 mt-6">
